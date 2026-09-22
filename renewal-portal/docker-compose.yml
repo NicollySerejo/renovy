@@ -1,0 +1,18 @@
+# Sobe apenas o banco de dados PostgreSQL para desenvolvimento local.
+# O backend (FastAPI) e o frontend (Vite) rodam fora do Docker neste MVP -
+# veja o README para os comandos de execução.
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: portal_user
+      POSTGRES_PASSWORD: portal_pass
+      POSTGRES_DB: renewal_portal
+    ports:
+      - "5432:5432"
+    volumes:
+      - portal_db_data:/var/lib/postgresql/data
+
+volumes:
+  portal_db_data:
